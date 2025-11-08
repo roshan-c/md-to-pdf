@@ -3,6 +3,7 @@ import { GrayMatterOption } from 'gray-matter';
 import { marked } from 'marked';
 import { resolve } from 'path';
 import { FrameAddScriptTagOptions, launch, PDFOptions } from 'puppeteer';
+import type { MarkedKatexOptions } from 'marked-katex-extension';
 
 export const defaultConfig: Config = {
 	basedir: process.cwd(),
@@ -14,6 +15,10 @@ export const defaultConfig: Config = {
 	page_media_type: 'screen',
 	highlight_style: 'github',
 	marked_options: {},
+	math_engine: 'katex',
+	math_engine_options: {
+		throwOnError: false,
+	},
 	pdf_options: {
 		printBackground: true,
 		format: 'a4',
@@ -117,6 +122,18 @@ interface BasicConfig {
 	 * @see https://marked.js.org/#/USING_ADVANCED.md
 	 */
 	marked_options: marked.MarkedOptions;
+
+	/**
+	 * Math rendering engine to use.
+	 */
+	math_engine: 'katex' | 'none';
+
+	/**
+	 * Options passed to the math rendering engine.
+	 *
+	 * When using KaTeX, these options correspond to {@link https://katex.org/docs/options.html | KaTeX options}.
+	 */
+	math_engine_options: MarkedKatexOptions;
 
 	/**
 	 * PDF options for Puppeteer.

@@ -11,6 +11,10 @@ export const getMarked = (options: marked.MarkedOptions, extensions: marked.Mark
 		langPrefix: 'hljs ',
 		...options,
 	});
-	marked.use(...extensions);
-	return marked;
+
+	if (extensions.length > 0) {
+		marked.use(...extensions);
+	}
+
+	return (markdown: string) => marked.parse(markdown);
 };

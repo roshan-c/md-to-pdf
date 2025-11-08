@@ -168,7 +168,9 @@ Refer to the Puppeteer docs for more info about [header](https://pptr.dev/api/pu
 
 #### Formulas
 
-This can be achieved with [MathJax](https://www.mathjax.org/). A simple example can be found in [`/src/test/mathjax`](/src/test/mathjax).
+`md-to-pdf` now renders inline and block math using [KaTeX](https://katex.org/) during the Markdown → HTML step, so the generated PDFs include vector math with no additional scripts. KaTeX is enabled by default and can be tuned with the same options documented at [katex.org/docs/options](https://katex.org/docs/options.html) (plus `nonStandard` from `marked-katex-extension`) via the `math_engine_options` setting.
+
+If you would rather handle math yourself, set `math_engine: none` in your config/front‑matter or pass `--math-engine none` on the CLI. You can then re-enable the previous MathJax workflow by injecting scripts, e.g. the example under [`/src/test/mathjax`](/src/test/mathjax).
 
 #### Default and Advanced Options
 
@@ -191,6 +193,8 @@ For default and advanced options see the following links. The default highlight.
 | `--page-media-type`     | `print`                                                               |
 | `--highlight-style`     | `monokai`, `solarized-light`                                          |
 | `--marked-options`      | `'{ "gfm": false }'`                                                  |
+| `--math-engine`         | `none`, `katex`                                                       |
+| `--math-engine-options` | `'{ "throwOnError": true, "strict": false }'`                         |
 | `--pdf-options`         | `'{ "format": "Letter", "margin": "20mm", "printBackground": true }'` |
 | `--launch-options`      | `'{ "args": ["--no-sandbox"] }'`                                      |
 | `--gray-matter-options` | `null`                                                                |

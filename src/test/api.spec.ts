@@ -79,7 +79,7 @@ test('compile the basic example to html and write to disk', async (t) => {
 	t.notThrows(() => readFileSync(resolve(__dirname, 'basic', 'api-test.html'), 'utf-8'));
 });
 
-test('compile the MathJax test', async (t) => {
+test('render math with KaTeX by default', async (t) => {
 	const pdf = await mdToPdf({ path: resolve(__dirname, 'mathjax', 'math.md') });
 
 	t.is(pdf.filename, '');
@@ -87,7 +87,7 @@ test('compile the MathJax test', async (t) => {
 
 	const textContent = await getPdfTextContent(pdf.content);
 
-	t.true(textContent.startsWith('Formulas with MathJax'));
+	t.true(textContent.startsWith('Formulas with KaTeX'));
 	t.regex(textContent, /a\s≠\s0/);
 });
 

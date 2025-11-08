@@ -34,6 +34,8 @@ export const cliFlags = arg({
 	'--page-media-type': String,
 	'--highlight-style': String,
 	'--marked-options': String,
+	'--math-engine': String,
+	'--math-engine-options': String,
 	'--html-pdf-options': String,
 	'--pdf-options': String,
 	'--launch-options': String,
